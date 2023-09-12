@@ -3,6 +3,7 @@ import { PrismaClient } from "@prisma/client";
 
 
 export class PrismaService extends PrismaClient implements OnModuleInit{
+    [x: string]: any;
     async onModuleInit() {
         await this.$connect()
     }

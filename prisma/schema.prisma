@@ -16,7 +16,7 @@ model Usuario {
   apellido  String
   ci        Int    @unique
   rolId     Int?
-  correo    String
+  correo    String @unique
   password  String
   telefono  Int    @unique
   direccion String

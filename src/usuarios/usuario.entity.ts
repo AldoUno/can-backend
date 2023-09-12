@@ -18,16 +18,16 @@ export class Usuario {
     correo: string
 
     // Propiedad 'telefono' de tipo string, que almacena el número de teléfono del usuario
-    telefono: string
+    telefono: number
 
     // Propiedad 'direccion' de tipo string, que almacena la dirección del usuario
     direccion: string
 
     // Propiedad 'contraseña' de tipo string, que almacena la contraseña del usuario (se debe considerar la seguridad de almacenar contraseñas)
-    contraseña: string
+    password: string
 
     // Propiedad 'rol' de tipo string, que podría representar el rol o nivel de acceso del usuario en un sistema
-    rol: string
+    rolId: number
 }
 
 /** 
