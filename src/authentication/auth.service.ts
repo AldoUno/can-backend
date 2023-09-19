@@ -4,6 +4,8 @@ import { PrismaService } from "src/prisma.service";
 import { UsuariosService } from "src/usuarios/usuarios.service";
 import { LoginDto } from "./dto/login.dto";
 import * as bcrypt from 'bcrypt';
+import { RegistroDto } from "./dto/register.dto";
+import { Usuarios } from "src/usuarios/usuarios.model";
 
 @Injectable()
 export class AuthService{
@@ -16,7 +18,30 @@ export class AuthService{
         if(!usuarios){
             throw new NotFoundException('Usuario no encontrado')
         }
-
         const validatePassword = await bcrypt.compare(password, usuarios.password)
+        if(!validatePassword){
+            throw new NotFoundException('Contraseña incorrecta')
+        }
+
+        return{
+            token: this.jwtService.sign({correo})
+        }
+    }
+    async registro (crearDto: RegistroDto): Promise<any>{
+        const crearUsuarios = new Usuarios();
+        crearUsuarios.nombre = crearDto.nombre
+        crearUsuarios.apellido = crearDto.apellido
+        crearUsuarios.ci = crearDto.ci
+        crearUsuarios.correo = crearDto.correo
+        crearUsuarios.password = await bcrypt.hash(crearDto.password, 6)
+        crearUsuarios.telefono = crearDto.telefono
+        crearUsuarios.direccion = crearDto.direccion
+       
+
+        const usuario = await this.usuariosService.crearUsuario(crearUsuarios)
+
+        return{
+            token: this.jwtService.sign({correo: usuario.correo})
+        }
     }
 }

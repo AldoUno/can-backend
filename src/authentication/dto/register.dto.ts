@@ -1,19 +1,15 @@
 import { IsNumber, IsString, Length } from "class-validator";
 
-export class RegisterDto{
+export class RegistroDto{
     @IsString()    
     nombre: string;
     @IsString() 
     apellido: string;
     @IsNumber()
     ci: number;
-    @IsNumber()
-    rolId: number;
-    @IsString()
-    @Length(5,50) 
+    @IsNumber() 
     correo: string;
-    @IsString()
-    @Length(6,12) 
+    @IsString()   
     password: string;
     @IsNumber()
     telefono: number;

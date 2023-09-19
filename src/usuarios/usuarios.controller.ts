@@ -1,7 +1,6 @@
 import { Controller, Req, Res, Get } from '@nestjs/common';
 import { UsuariosService } from './usuarios.service';
 import { Request, Response } from 'express';
-import { CreateUsuarioDto, UpdateUsuarioDto } from './dto/usuario.dto';
 
 @Controller('usuarios')
 export class UsuariosController {    
@@ -19,7 +18,8 @@ export class UsuariosController {
         } catch (error) {
             return response.status(500).json({
                 status: 'Correcto',
-                message: 'Error de Servidor'
+                message: 'Error de Servidor',
+                error: error.message 
             })            
         }
     }
